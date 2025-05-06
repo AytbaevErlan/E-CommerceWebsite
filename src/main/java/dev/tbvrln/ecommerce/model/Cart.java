@@ -7,13 +7,14 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table
 @Builder
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "cart_sequence",
+            sequenceName = "cart_sequence",
+            allocationSize = 1)
     private Long id;
 
     @OneToOne
@@ -22,4 +23,55 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
+
+    public Cart() {
+    }
+
+    public Cart(Long id) {
+        this.id = id;
+    }
+
+    public Cart(Long id, Buyer buyer) {
+        this.id = id;
+        this.buyer = buyer;
+    }
+
+    public Cart(Long id, Buyer buyer, List<CartItem> cartItems) {
+        this.id = id;
+        this.buyer = buyer;
+        this.cartItems = cartItems;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", buyer=" + buyer +
+                ", cartItems=" + cartItems +
+                '}';
+    }
 }
