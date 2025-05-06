@@ -18,13 +18,13 @@ public class OrderConfig {
             Order order1 = new Order(
                     LocalDateTime.now().minusDays(2),
                     150.50,
-                    null // You'd typically create and associate a Payment here
+                    null // i should  create and associate a Payment here
             );
 
             Order order2 = new Order(
                     LocalDateTime.now().minusHours(5),
                     75.20,
-                    null // You'd typically create and associate a Payment here
+                    null // i should  create and associate a Payment here
             );
 
             orderRepository.saveAll(List.of(order1, order2));
